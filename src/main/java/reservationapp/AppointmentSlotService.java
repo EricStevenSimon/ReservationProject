@@ -45,4 +45,10 @@ public class AppointmentSlotService {
         //There should really be a call to "update" the changte in the DB but, with the current lack of a DB,
         //updating the slot object which is in memory is sufficient to "persist" the change.
     }
+
+    public void confirmSlot(AppointmentSlot appointmentSlot) {
+        appointmentSlot.setBookingStatus(AppointmentBookingStatus.CONFIRMED);
+        //There should really be a call to "update" the changte in the DB but, with the current lack of a DB,
+        //updating the slot object which is in memory is sufficient to "persist" the change.
+    }
 }

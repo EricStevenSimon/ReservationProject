@@ -10,7 +10,7 @@ import java.util.UUID;
 @RestController
 public class AppointmentsController {
 
-    private AppointmentSlotService appointmentSlotService;
+    private final AppointmentSlotService appointmentSlotService;
 
     public AppointmentsController(AppointmentSlotService appointmentSlotService) {
         this.appointmentSlotService = appointmentSlotService;
@@ -21,5 +21,13 @@ public class AppointmentsController {
 
         AppointmentSlot appointmentSlot = appointmentSlotService.getAppointmentSlotById(appointmentId);
         appointmentSlotService.reserveSlot(appointmentSlot, reservationRequest.getClientId());
+    }
+
+    @PostMapping("/appointmentSlots/{appointmentId}/confirm")
+    public void confirmAppointmentSlot(@PathVariable UUID appointmentId) {
+
+        //TODO add validation so that only reserved appointments can be confirmed
+        AppointmentSlot appointmentSlot = appointmentSlotService.getAppointmentSlotById(appointmentId);
+        appointmentSlotService.confirmSlot(appointmentSlot);
     }
 }
