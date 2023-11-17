@@ -26,7 +26,7 @@ public class ProviderRepository {
         Provider provider = providers.get(id);
 
         if (provider == null) {
-            throw new ProviderNotFoundException(id);
+            throw new NotFoundException("Provider", id);
         }
 
         return provider;

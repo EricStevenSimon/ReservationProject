@@ -23,6 +23,14 @@ public class AppointmentSlot {
         id = UUID.randomUUID();
     }
 
+    public static AppointmentSlot createSampleHardcodedAppointmentSlot() {
+        var sampleAppointment = new AppointmentSlot();
+        sampleAppointment.providerId = 1;
+        sampleAppointment.startTime = LocalDateTime.of(2023, 11, 17, 15, 00);
+        sampleAppointment.id = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        return sampleAppointment;
+    }
+
     public UUID getId() {
         return id;
     }
@@ -41,5 +49,13 @@ public class AppointmentSlot {
 
     public AppointmentBookingStatus getBookingStatus() {
         return bookingStatus;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public void setBookingStatus(AppointmentBookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
     }
 }
