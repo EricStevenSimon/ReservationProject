@@ -10,10 +10,13 @@ import java.util.UUID;
 @Service
 public class AppointmentSlotService {
 
-    private AppointmentSlotRepository appointmentSlotRepository;
+    private final AppointmentSlotRepository appointmentSlotRepository;
+    private final AppointmentSlotValidator appointmentSlotValidator;
 
-    public AppointmentSlotService(AppointmentSlotRepository appointmentSlotRepository) {
+    public AppointmentSlotService(AppointmentSlotRepository appointmentSlotRepository,
+                                  AppointmentSlotValidator appointmentSlotValidator) {
         this.appointmentSlotRepository = appointmentSlotRepository;
+        this.appointmentSlotValidator = appointmentSlotValidator;
     }
 
     public AppointmentSlot getAppointmentSlotById(UUID id) {
@@ -28,19 +31,19 @@ public class AppointmentSlotService {
         return appointmentSlotRepository.getAvailableAppointmentsForProvider(provider);
     }
 
-
     public void addAppointmentSlots(Provider provider, Collection<LocalDateTime> appointmentTimeSlotsToAdd) {
-
-        //todo validation
 
         Collection<AppointmentSlot> appointmentsToAdd = appointmentTimeSlotsToAdd.stream()
                 .map(appointmentTime -> new AppointmentSlot(provider.getId(), appointmentTime))
                 .toList();
+        appointmentSlotValidator.validateAddAppointmentSlots(appointmentsToAdd);
         appointmentSlotRepository.addAppointments(provider, appointmentsToAdd);
     }
 
     public void reserveSlot(AppointmentSlot appointmentSlot, int clientId) {
-        //TODO verify client exists
+        //TODO verify client exists (possibly in the validator)
+        appointmentSlotValidator.validateReservation(appointmentSlot);
+
         appointmentSlot.setClientId(clientId);
         appointmentSlot.setBookingStatus(AppointmentBookingStatus.RESERVATION_IN_PROGRESS);
         appointmentSlot.setReservationTime(LocalDateTime.now());
