@@ -1,9 +1,6 @@
 package reservationapp.appointments;
 
 import org.springframework.stereotype.Service;
-import reservationapp.appointments.AppointmentBookingStatus;
-import reservationapp.appointments.AppointmentSlot;
-import reservationapp.appointments.AppointmentSlotRepository;
 import reservationapp.providers.Provider;
 
 import java.time.LocalDateTime;
@@ -46,13 +43,26 @@ public class AppointmentSlotService {
         //TODO verify client exists
         appointmentSlot.setClientId(clientId);
         appointmentSlot.setBookingStatus(AppointmentBookingStatus.RESERVATION_IN_PROGRESS);
-        //There should really be a call to "update" the changte in the DB but, with the current lack of a DB,
+        appointmentSlot.setReservationTime(LocalDateTime.now());
+        //There should really be a call to "update" the change in the DB but, with the current lack of a DB,
         //updating the slot object which is in memory is sufficient to "persist" the change.
     }
 
     public void confirmSlot(AppointmentSlot appointmentSlot) {
         appointmentSlot.setBookingStatus(AppointmentBookingStatus.CONFIRMED);
-        //There should really be a call to "update" the changte in the DB but, with the current lack of a DB,
+        //There should really be a call to "update" the change in the DB but, with the current lack of a DB,
+        //updating the slot object which is in memory is sufficient to "persist" the change.
+    }
+
+    public Collection<AppointmentSlot> getAppointmentSlotsWithOverdueReservations() {
+        return appointmentSlotRepository.getAppointmentSlotsWithOverdueReservations();
+    }
+
+    public void cancelReservation(AppointmentSlot appointmentSlot) {
+        appointmentSlot.setClientId(0);
+        appointmentSlot.setReservationTime(null);
+        appointmentSlot.setBookingStatus(AppointmentBookingStatus.UNBOOKED);
+        //There should really be a call to "update" the change in the DB but, with the current lack of a DB,
         //updating the slot object which is in memory is sufficient to "persist" the change.
     }
 }

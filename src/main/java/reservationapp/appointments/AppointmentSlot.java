@@ -11,6 +11,7 @@ public class AppointmentSlot {
     private int clientId;
     private LocalDateTime startTime;
     private AppointmentBookingStatus bookingStatus;
+    private LocalDateTime reservationTime;
 
     public AppointmentSlot() {
     }
@@ -52,11 +53,19 @@ public class AppointmentSlot {
         return bookingStatus;
     }
 
+    public LocalDateTime getReservationTime() {
+        return reservationTime;
+    }
+
     public void setClientId(int clientId) {
         this.clientId = clientId;
     }
 
     public void setBookingStatus(AppointmentBookingStatus bookingStatus) {
         this.bookingStatus = bookingStatus;
+    }
+
+    public void setReservationTime(LocalDateTime reservationTime) {
+        this.reservationTime = reservationTime;
     }
 }

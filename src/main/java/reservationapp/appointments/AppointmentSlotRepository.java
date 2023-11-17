@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import reservationapp.NotFoundException;
 import reservationapp.providers.Provider;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
@@ -47,6 +48,18 @@ public class AppointmentSlotRepository {
         }
 
         return slot;
+    }
+
+    public Collection<AppointmentSlot> getAppointmentSlotsWithOverdueReservations() {
+        //Taking a quick approach to this and using the map of "appointment slots by id" to get all possible
+        //appointments, then doing some quick in-memory filtering.
+
+        //A reservation is considered as "overdue" if it is unconfirmed within thirty minutes
+        LocalDateTime thirtyMinutesAgo = LocalDateTime.now().minusMinutes(30);
+        return appointmentSlotsById.values().stream()
+                .filter(slot -> slot.getBookingStatus() == AppointmentBookingStatus.RESERVATION_IN_PROGRESS && slot.getReservationTime().isBefore(thirtyMinutesAgo))
+                .toList();
+
     }
 
     public void addAppointments(Provider provider, Collection<AppointmentSlot> appointments) {
