@@ -1,9 +1,9 @@
 package reservationapp;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
@@ -31,5 +31,12 @@ public class ProvidersController {
         Provider provider = providerRepository.getProviderById(providerId);
         Collection<AppointmentSlot> appointmentSlots = appointmentSlotService.getAppointmentSlotsForProvider(provider);
         return appointmentSlots;
+    }
+
+    @PostMapping("/providers/{providerId}/appointmentSlots")
+    public void addAppointmentSlots(@PathVariable int providerId, @RequestBody ArrayList<LocalDateTime> appointmentTimesToAdd) {
+
+        Provider provider = providerRepository.getProviderById(providerId);
+        appointmentSlotService.addAppointmentSlots(provider, appointmentTimesToAdd);
     }
 }
