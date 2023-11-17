@@ -21,4 +21,14 @@ public class ProviderRepository {
     public Collection<Provider> getProviders() {
         return providers.values();
     }
+
+    public Provider getProviderById(int id) {
+        Provider provider = providers.get(id);
+
+        if (provider == null) {
+            throw new ProviderNotFoundException(id);
+        }
+
+        return provider;
+    }
 }
