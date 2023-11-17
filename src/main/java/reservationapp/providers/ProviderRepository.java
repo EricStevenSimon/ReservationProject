@@ -1,6 +1,8 @@
-package reservationapp;
+package reservationapp.providers;
 
 import org.springframework.stereotype.Repository;
+import reservationapp.NotFoundException;
+import reservationapp.providers.Provider;
 
 import java.util.Collection;
 import java.util.HashMap;

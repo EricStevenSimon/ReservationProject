@@ -1,4 +1,4 @@
-package reservationapp;
+package reservationapp.appointments;
 
 public enum AppointmentBookingStatus {
 

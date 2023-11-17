@@ -1,4 +1,4 @@
-package reservationapp;
+package reservationapp.providers;
 
 import java.time.LocalDateTime;
 

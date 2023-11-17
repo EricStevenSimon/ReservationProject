@@ -1,4 +1,4 @@
-package reservationapp;
+package reservationapp.appointments;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -28,6 +28,7 @@ public class AppointmentSlot {
         sampleAppointment.providerId = 1;
         sampleAppointment.startTime = LocalDateTime.of(2023, 11, 17, 15, 00);
         sampleAppointment.id = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        sampleAppointment.bookingStatus = AppointmentBookingStatus.UNBOOKED;
         return sampleAppointment;
     }
 

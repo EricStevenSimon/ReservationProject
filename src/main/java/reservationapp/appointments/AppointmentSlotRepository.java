@@ -1,8 +1,9 @@
-package reservationapp;
+package reservationapp.appointments;
 
 import org.springframework.stereotype.Repository;
+import reservationapp.NotFoundException;
+import reservationapp.providers.Provider;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository

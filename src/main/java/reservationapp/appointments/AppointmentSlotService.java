@@ -1,6 +1,10 @@
-package reservationapp;
+package reservationapp.appointments;
 
 import org.springframework.stereotype.Service;
+import reservationapp.appointments.AppointmentBookingStatus;
+import reservationapp.appointments.AppointmentSlot;
+import reservationapp.appointments.AppointmentSlotRepository;
+import reservationapp.providers.Provider;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

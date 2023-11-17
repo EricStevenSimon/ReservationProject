@@ -1,6 +1,9 @@
-package reservationapp;
+package reservationapp.providers;
 
 import org.springframework.web.bind.annotation.*;
+import reservationapp.appointments.AppointmentSlot;
+import reservationapp.appointments.AppointmentSlotService;
+import reservationapp.providers.Provider;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
