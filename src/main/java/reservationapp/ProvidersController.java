@@ -39,4 +39,12 @@ public class ProvidersController {
         Provider provider = providerRepository.getProviderById(providerId);
         appointmentSlotService.addAppointmentSlots(provider, appointmentTimesToAdd);
     }
+
+    @GetMapping("/providers/{providerId}/availableAppointmentSlots")
+    public Collection<AppointmentSlot> getAvailableAppointmentSlots(@PathVariable int providerId) {
+
+        Provider provider = providerRepository.getProviderById(providerId);
+        Collection<AppointmentSlot> availableAppointmentSlots = appointmentSlotService.getAvailableAppointmentSlotsForProvider(provider);
+        return availableAppointmentSlots;
+    }
 }

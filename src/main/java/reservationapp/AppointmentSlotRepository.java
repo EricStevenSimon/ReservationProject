@@ -29,6 +29,14 @@ public class AppointmentSlotRepository {
         return appointmentsByProvider.get(provider.getId());
     }
 
+    public Collection<AppointmentSlot> getAvailableAppointmentsForProvider(Provider provider) {
+
+        return appointmentsByProvider.get(provider.getId())
+                .stream()
+                .filter(slot -> slot.getBookingStatus() == AppointmentBookingStatus.UNBOOKED)
+                .toList();
+    }
+
     public void addAppointments(Provider provider, Collection<AppointmentSlot> appointments) {
 
         Collection<AppointmentSlot> appointmentSlotsForProvider = getAppointmentsForProvider(provider);

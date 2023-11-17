@@ -18,6 +18,11 @@ public class AppointmentSlotService {
         return appointmentSlotRepository.getAppointmentsForProvider(provider);
     }
 
+    public Collection<AppointmentSlot> getAvailableAppointmentSlotsForProvider(Provider provider) {
+        return appointmentSlotRepository.getAvailableAppointmentsForProvider(provider);
+    }
+
+
     public void addAppointmentSlots(Provider provider, Collection<LocalDateTime> appointmentTimeSlotsToAdd) {
 
         //todo validation
