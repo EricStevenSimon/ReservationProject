@@ -17,6 +17,6 @@ I'm definitely not a REST purist and I've taken some liberties in that regard.  
 
 This was a quick project, so several corners were cut.  I made note of a number of items via "todo" comments but will call out a few here as well.  Foremost, the repository classes don't interact with an actual DB and instead store information in memory.  These repositories also include some initial seed data which was useful while testing.  I also would have taken another pass over the APIs - in particular, I don't like the structure of the API to add appointment slots for a provider - it takes in a list of dates, but I think it'd be clearer and more easily expandable if it took in a collection of objects (which could include the date, as well as other fields if needed).
 
-Here are a couple of videos with additional information that may be useful:
-Demo: https://www.loom.com/share/48f49223faae4e7f859093c9d7a13bb7
+Here are a couple of videos with additional information that may be useful: \
+Demo: https://www.loom.com/share/48f49223faae4e7f859093c9d7a13bb7 \
 Quick code walkthrough: https://www.loom.com/share/2ba114f611514dad95844c499d44604f
